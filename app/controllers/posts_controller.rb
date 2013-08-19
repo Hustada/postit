@@ -25,10 +25,22 @@ def create
 end
 
 def edit
+  @post = Post.find(params[:id])
 
 end
 
-def update
+def category
+  @category = Category.new
+end  
 
+def update
+  @post = Post.find(params[:id])
+
+  if @post.update(post_params)
+    flash[:notice] = "You updated the post!"
+    redirect_to posts_path(@posts)
+  else
+    render :edit
   end
 end  
+end
