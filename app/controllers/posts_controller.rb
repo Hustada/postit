@@ -1,10 +1,12 @@
 class PostsController < ApplicationController
+  before_action :set_post, only: [:show, :edit, :update]
+
   def index
     @posts = Post.all
  end
 
 def show
-    @post = Post.find(params[:id])
+    @comment = Comment.new
   end
 
 def new
@@ -25,7 +27,6 @@ def create
 end
 
 def edit
-  @post = Post.find(params[:id])
 
 end
 
@@ -34,13 +35,22 @@ def category
 end  
 
 def update
-  @post = Post.find(params[:id])
-
   if @post.update(post_params)
     flash[:notice] = "You updated the post!"
     redirect_to posts_path(@posts)
   else
     render :edit
   end
-end  
+end 
+
+
+private
+
+def post_params
+  params.require(:post).permit(:url, :title)
+end
+
+def set_post
+  @post = Post.find(params[:id])
+  end    
 end
