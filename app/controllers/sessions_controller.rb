@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
 
     else
-      flash[:error] = "Try going a bit slower, something is wrong with your username or password"
+      flash[:error] = "Something is wrong with your username or password"
       redirect_to login_path
   end
 end
