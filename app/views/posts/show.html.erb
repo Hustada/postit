@@ -18,9 +18,10 @@
   <h5>Comments:</h5>
   <ol>
     <% @post.comments.each do |comment| %>
-     <li><%= comment.body %> by <%= comment.creator.username %> </li>
+     <li>
+    <%= comment.body %> by <%= comment.creator.username %> </li>
     <% end %>  
+  </ol>
 
-</ol>
 
-</p>
+</p>  

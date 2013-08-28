@@ -2,7 +2,19 @@
 
 <ul>
 <% @posts.each do |post| %>
-  <li><%= link_to post.title, post_path(post) %>  
+
+  <li>
+    <% if logged_in? %>
+    (<%= link_to '+', vote_post_path(post, vote: true), method: 'post' %>
+    <% end %>
+    -
+    <%= post.total_votes %>
+    -
+    <% if logged_in? %>
+    <%= link_to '-', vote_post_path(post, vote: false), method: 'post' %>)
+    <% end %>
+    
+    <%= link_to post.title, post_path(post) %>  
     by <%= post.creator.username %>
    <small>[<%=link_to 'link', fix_url(post.url) %>]</small>
     post at <%= display_datetime(post.created_at) %>
