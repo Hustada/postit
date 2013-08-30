@@ -66,13 +66,17 @@ def post_params
   params.require(:post).permit(:url, :title)
 end
 
+
 def set_post
-  @post = Post.find(params[:id])
-  end    
+  @post = Post.find_by(slug: params[:id])  
+end
+
+
 
 def require_creator
   access_denied if @post.creator != current_user
 end  
 end
+
 
 
