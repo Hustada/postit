@@ -1,9 +1,12 @@
-<h3>Welcome!</h3>
+<h3>Welcome to Postit!</h3>
 
-<ul>
-<% @posts.each do |post| %>
 
-  <li>
+
+ 
+
+<ul><% @posts.each do |post| %>
+ <div class="well"
+<li>
     <% if logged_in? %>
     (<%= link_to '<i class="icon-thumbs-up"></i>'.html_safe, vote_post_path(post, vote: true), method: 'post', remote: true %>
     <% end %>
@@ -15,8 +18,8 @@
     <% if logged_in? %>
     <%= link_to '<i class="icon-thumbs-down"></i>'.html_safe, vote_post_path(post, vote: false), method: 'post',remote: true %>)
     <% end %>
-    
-    
+
+
     <%= link_to post.title, post_path(post) %>  
     by <%= post.creator.username %>
    <small>[<%=link_to 'link', fix_url(post.url) %>]</small>
@@ -25,5 +28,11 @@
     <%= link_to 'Edit', edit_post_path(post) %>
     <% end %>
 </li>
+</div>
 <% end %>
 </ul>
+
+
+
+
+
